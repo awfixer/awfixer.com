@@ -88,9 +88,11 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
-      "sharp",
+      "bufferutil",
       "esbuild",
-      "unrs-resolver"
+      "sharp",
+      "unrs-resolver",
+      "utf-8-validate"
     ]
   }
 }
