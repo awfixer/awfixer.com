@@ -1,17 +1,17 @@
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import {
-  DefaultNodeTypes,
-  SerializedBlockNode,
-  SerializedLinkNode,
+  type DefaultNodeTypes,
   type DefaultTypedEditorState,
+  type SerializedBlockNode,
+  type SerializedLinkNode,
 } from '@payloadcms/richtext-lexical'
 import {
-  JSXConvertersFunction,
   LinkJSXConverter,
   RichText as ConvertRichText,
+  type JSXConvertersFunction,
 } from '@payloadcms/richtext-lexical/react'
 
-import { CodeBlock, CodeBlockProps } from '@/blocks/Code/Component'
+import { CodeBlock, type CodeBlockProps } from '@/blocks/Code/Component'
 
 import type {
   BannerBlock as BannerBlockProps,
@@ -42,7 +42,7 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
     banner: ({ node }) => <BannerBlock className="col-start-2 mb-4" {...node.fields} />,
     mediaBlock: ({ node }) => (
       <MediaBlock
-        className="col-start-1 col-span-3"
+        className="col-span-3 col-start-1"
         imgClassName="m-0"
         {...node.fields}
         captionClassName="mx-auto max-w-[48rem]"

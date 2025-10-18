@@ -1,20 +1,21 @@
 import { Banner } from '@payloadcms/ui/elements/Banner'
 import React from 'react'
 
-import './index.scss'
-
-const baseClass = 'before-dashboard'
-
 const BeforeDashboard: React.FC = () => {
   return (
-    <div className={baseClass}>
-      <Banner className={`${baseClass}__banner`} type="success">
+    <div className="mb-6">
+      <Banner className="[&_h4]:m-0" type="success">
         <h4>Welcome to AWFixer and Friends!</h4>
       </Banner>
       Here&apos;s what to do next:
-      <ul className={`${baseClass}__instructions`}>
+      <ul className="mb-2 list-decimal [&_li]:w-full">
         <li>
-          <a href="/" target="_blank">
+          <a
+            href="/"
+            target="_blank"
+            className="transition-opacity hover:opacity-85"
+            rel="noopener noreferrer"
+          >
             Visit your website
           </a>
           {' to see your content and start managing your site.'}
@@ -30,6 +31,7 @@ const BeforeDashboard: React.FC = () => {
             href="https://payloadcms.com/docs/configuration/collections"
             rel="noopener noreferrer"
             target="_blank"
+            className="transition-opacity hover:opacity-85"
           >
             collections
           </a>
@@ -38,6 +40,7 @@ const BeforeDashboard: React.FC = () => {
             href="https://payloadcms.com/docs/fields/overview"
             rel="noopener noreferrer"
             target="_blank"
+            className="transition-opacity hover:opacity-85"
           >
             fields
           </a>
@@ -46,6 +49,7 @@ const BeforeDashboard: React.FC = () => {
             href="https://payloadcms.com/docs/getting-started/what-is-payload"
             rel="noopener noreferrer"
             target="_blank"
+            className="transition-opacity hover:opacity-85"
           >
             Getting Started
           </a>
@@ -60,6 +64,7 @@ const BeforeDashboard: React.FC = () => {
         href="https://payloadcms.com/docs/custom-components/overview"
         rel="noopener noreferrer"
         target="_blank"
+        className="transition-opacity hover:opacity-85"
       >
         custom component
       </a>

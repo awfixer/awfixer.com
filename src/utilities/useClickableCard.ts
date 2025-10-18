@@ -1,8 +1,6 @@
 'use client'
-import type { RefObject } from 'react'
-
 import { useRouter } from 'next/navigation'
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, type RefObject } from 'react'
 
 type UseClickableCardType<T extends HTMLElement> = {
   card: {

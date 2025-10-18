@@ -43,7 +43,7 @@ export const Card: React.FC<{
       </div>
       <div className="p-4">
         {showCategories && hasCategories && (
-          <div className="uppercase text-sm mb-4">
+          <div className="mb-4 text-sm uppercase">
             {showCategories && hasCategories && (
               <div>
                 {categories?.map((category, index) => {

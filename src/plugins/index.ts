@@ -5,14 +5,14 @@ import { redirectsPlugin } from '@payloadcms/plugin-redirects'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 import { searchPlugin } from '@payloadcms/plugin-search'
 import { payloadTotp } from 'payload-totp'
-import { Plugin } from 'payload'
+import type { Plugin } from 'payload'
 import { revalidateRedirects } from '@/hooks/revalidateRedirects'
-import { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
+import type { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
 import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 import { searchFields } from '@/search/fieldOverrides'
 import { beforeSyncWithSearch } from '@/search/beforeSync'
 
-import { Page, Post } from '@/payload-types'
+import type { Page, Post } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
@@ -96,11 +96,8 @@ export const plugins: Plugin[] = [
     totp: {
       algorithm: 'SHA256',
       digits: 6,
-      issuer: 'Awfixer',
+      issuer: 'AWFixer and Friends',
       period: 30,
-    },
-    qr: {
-      forceLight: true,
     },
   }),
   payloadCloudPlugin(),
