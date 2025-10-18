@@ -1,4 +1,6 @@
 import { defineConfig, devices } from '@playwright/test'
+import { payloadTotp } from 'payload-totp'
+
 
 /**
  * Read environment variables from file.

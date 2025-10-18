@@ -4,6 +4,7 @@ import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
 import { redirectsPlugin } from '@payloadcms/plugin-redirects'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 import { searchPlugin } from '@payloadcms/plugin-search'
+import { payloadTotp } from 'payload-totp'
 import { Plugin } from 'payload'
 import { revalidateRedirects } from '@/hooks/revalidateRedirects'
 import { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
@@ -15,7 +16,7 @@ import { Page, Post } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
-  return doc?.title ? `${doc.title} | Payload Website Template` : 'Payload Website Template'
+  return doc?.title ? `${doc.title} | AWFixer and Friends` : 'AWFixer and Friends'
 }
 
 const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
@@ -88,6 +89,18 @@ export const plugins: Plugin[] = [
       fields: ({ defaultFields }) => {
         return [...defaultFields, ...searchFields]
       },
+    },
+  }),
+  payloadTotp({
+    collection: 'users',
+    totp: {
+      algorithm: 'SHA256',
+      digits: 6,
+      issuer: 'Awfixer',
+      period: 30,
+    },
+    qr: {
+      forceLight: true,
     },
   }),
   payloadCloudPlugin(),

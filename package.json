@@ -1,7 +1,7 @@
 {
-  "name": "with-vercel-website",
+  "name": "awfixer-website",
   "version": "1.0.0",
-  "description": "Website template for Payload",
+  "description": "AWFixer and Friends website",
   "license": "MIT",
   "type": "module",
   "scripts": {
