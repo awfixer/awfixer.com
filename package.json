@@ -28,7 +28,7 @@
     "@payloadcms/live-preview-react": "3.59.1",
     "@payloadcms/next": "3.59.1",
     "@payloadcms/payload-cloud": "3.59.1",
-    "@payloadcms/plugin-form-builder": "3.59.1",
+    "@payloadcms/plugin-form-builder": "3.60.0",
     "@payloadcms/plugin-nested-docs": "3.59.1",
     "@payloadcms/plugin-redirects": "3.59.1",
     "@payloadcms/plugin-search": "3.59.1",
