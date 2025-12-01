@@ -82,7 +82,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^24.0.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
@@ -92,7 +92,7 @@
     "typescript": "^5"
   },
   "engines": {
-    "node": "^22",
+    "node": "^24.0.0",
     "pnpm": "^10"
   },
   "pnpm": {
