@@ -84,6 +84,7 @@
     "svg-dotted-map": "^2.0.1",
     "tailwind-merge": "^3.4.0",
     "vaul": "^1.1.2",
+    "vercel": "^48.12.0",
     "zod": "^4.1.13"
   },
   "devDependencies": {
