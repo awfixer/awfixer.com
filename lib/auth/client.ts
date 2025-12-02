@@ -31,7 +31,7 @@ export const signInWithDiscord = (callbackUrl?: string) => {
 };
 
 // Check if user needs to complete profile
-export const needsProfileCompletion = (user: any) => {
+export const needsProfileCompletion = (user: User | null | undefined) => {
   return !user?.name || !user?.username;
 };
 

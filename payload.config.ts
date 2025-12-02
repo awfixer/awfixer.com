@@ -25,18 +25,53 @@ export default buildConfig({
       favicon: "/favicon.ico",
       ogImage: "/og-image.jpg",
     },
+    // Disable default authentication UI (using Discord auth instead)
+    disable: false,
   },
   collections: [
     {
       slug: "blog-users",
-      auth: true,
+      auth: {
+        // Token expiration matches Discord session
+        tokenExpiration: 60 * 60 * 24 * 7, // 7 days
+        // Disable email verification since we use Discord
+        verify: false,
+        // Max login attempts
+        maxLoginAttempts: 5,
+        lockTime: 600000, // 10 minutes
+      },
       admin: {
         useAsTitle: "email",
+        description: "Blog admin users linked to whitelisted Discord accounts",
+      },
+      access: {
+        // Only admins can read user list
+        read: ({ req: { user } }) => {
+          if (!user) return false;
+          return user.role === "admin";
+        },
+        // Only admins can create users
+        create: ({ req: { user } }) => {
+          if (!user) return false;
+          return user.role === "admin";
+        },
+        // Users can update their own profile, admins can update anyone
+        update: ({ req: { user }, id }) => {
+          if (!user) return false;
+          if (user.role === "admin") return true;
+          return user.id === id;
+        },
+        // Only admins can delete users
+        delete: ({ req: { user } }) => {
+          if (!user) return false;
+          return user.role === "admin";
+        },
       },
       fields: [
         {
           name: "name",
           type: "text",
+          required: true,
         },
         {
           name: "role",
@@ -45,8 +80,25 @@ export default buildConfig({
             { label: "Admin", value: "admin" },
             { label: "Editor", value: "editor" },
           ],
-          defaultValue: "editor",
+          defaultValue: "admin", // All whitelisted users default to admin
           required: true,
+          access: {
+            // Only admins can change roles
+            update: ({ req: { user } }) => {
+              if (!user) return false;
+              return user.role === "admin";
+            },
+          },
+        },
+        {
+          name: "discordId",
+          type: "text",
+          admin: {
+            readOnly: true,
+            description: "Discord user ID (auto-populated)",
+            position: "sidebar",
+          },
+          unique: true,
         },
       ],
     },
@@ -367,10 +419,26 @@ export default buildConfig({
   sharp,
   plugins: [],
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000",
-  cors: [process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000"].filter(
-    Boolean,
-  ),
-  csrf: [process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000"].filter(
-    Boolean,
-  ),
+  cors: [
+    process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000",
+    "http://localhost:3000", // Always allow localhost for development
+  ].filter(Boolean),
+  csrf: [
+    process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000",
+    "http://localhost:3000", // Always allow localhost for development
+  ].filter(Boolean),
+  // Custom endpoints for Discord auth integration
+  endpoints: [
+    {
+      path: "/blog-admin-check",
+      method: "get",
+      handler: async (req, res) => {
+        // Health check endpoint for blog admin
+        res.status(200).json({
+          message: "Blog admin is configured with Discord authentication",
+          authMethod: "discord-whitelist",
+        });
+      },
+    },
+  ],
 });

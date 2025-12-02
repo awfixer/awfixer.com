@@ -3,6 +3,7 @@ import { paymentMiddleware, Network, Resource } from "x402-next";
 import { NextRequest, NextResponse } from "next/server";
 import { betterAuth } from "better-auth";
 import { createClient } from "@supabase/supabase-js";
+import { isDiscordUserWhitelisted } from "@root/lib/payload-auth";
 
 const facilitatorUrl = process.env.NEXT_PUBLIC_FACILITATOR_URL as Resource;
 const payTo = process.env.RESOURCE_WALLET_ADDRESS as Address;
@@ -106,6 +107,39 @@ export async function middleware(request: NextRequest) {
       const signInUrl = new URL("/api/auth/sign-in/discord", request.url);
       signInUrl.searchParams.set("callbackUrl", pathname);
       return NextResponse.redirect(signInUrl);
+    }
+
+    // Special handling for blog admin routes
+    if (pathname.startsWith("/blog-admin")) {
+      // Check if user is whitelisted for blog admin access
+      if (!session.user.discordId) {
+        const errorUrl = new URL("/auth/error", request.url);
+        errorUrl.searchParams.set(
+          "message",
+          "Blog admin requires Discord authentication",
+        );
+        return NextResponse.redirect(errorUrl);
+      }
+
+      const isWhitelisted = await isDiscordUserWhitelisted(
+        session.user.discordId as string,
+      );
+
+      if (!isWhitelisted) {
+        // User is not whitelisted for blog admin
+        const errorUrl = new URL("/auth/error", request.url);
+        errorUrl.searchParams.set(
+          "message",
+          "Your Discord account is not authorized for blog admin access",
+        );
+        errorUrl.searchParams.set(
+          "discordId",
+          session.user.discordId as string,
+        );
+        return NextResponse.redirect(errorUrl);
+      }
+
+      // User is whitelisted, allow access to blog admin
     }
 
     // User is authenticated, check if they need to complete profile

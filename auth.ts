@@ -1,5 +1,4 @@
 import { betterAuth } from "better-auth";
-import { discord } from "better-auth/providers/discord";
 import { createClient } from "@supabase/supabase-js";
 import { addUserToDiscordServer } from "@root/lib/discord-bot";
 
@@ -14,13 +13,13 @@ export const auth = betterAuth({
     supabase: supabase,
   },
   emailAndPassword: {
-    enabled: true,
+    enabled: false, // Disabled - Discord-only authentication
   },
   socialProviders: {
     discord: {
       clientId: process.env.DISCORD_CLIENT_ID!,
       clientSecret: process.env.DISCORD_CLIENT_SECRET!,
-      scope: ["identify", "email", "guilds.join"], // Add guilds.join scope
+      scope: ["identify", "email", "guilds.join"],
     },
   },
   session: {
@@ -41,6 +40,11 @@ export const auth = betterAuth({
         type: "string",
         required: false,
       },
+      isBlogAdmin: {
+        type: "boolean",
+        required: false,
+        defaultValue: false,
+      },
     },
   },
   advanced: {
@@ -50,9 +54,14 @@ export const auth = betterAuth({
     after: [
       {
         matcher: () => true,
-        handler: async (ctx: any) => {
-          // Add user to Discord server after successful OAuth
-          if (ctx.context?.socialProvider === "discord" && ctx.user) {
+        handler: async (ctx) => {
+          // Type guard to check if this is a social provider authentication
+          if (
+            ctx.context?.socialProvider === "discord" &&
+            ctx.user &&
+            "discordId" in ctx.user
+          ) {
+            // Add user to Discord server after successful OAuth
             const discordServerId = process.env.DISCORD_SERVER_ID;
             const discordBotToken = process.env.DISCORD_BOT_TOKEN;
 
@@ -65,11 +74,16 @@ export const auth = betterAuth({
 
             // Get the access token from the account
             const account = ctx.account;
-            if (account?.access_token && ctx.user.discordId) {
+            if (
+              account &&
+              "access_token" in account &&
+              account.access_token &&
+              ctx.user.discordId
+            ) {
               try {
                 const result = await addUserToDiscordServer({
-                  accessToken: account.access_token,
-                  userId: ctx.user.discordId,
+                  accessToken: account.access_token as string,
+                  userId: ctx.user.discordId as string,
                   guildId: discordServerId,
                   botToken: discordBotToken,
                 });
@@ -85,6 +99,34 @@ export const auth = betterAuth({
                 }
               } catch (error) {
                 console.error("Error adding user to Discord server:", error);
+              }
+            }
+
+            // Check if user is in blog admin whitelist
+            const whitelist = process.env.BLOG_ADMIN_WHITELIST || "";
+            const whitelistedIds = whitelist
+              .split(",")
+              .map((id) => id.trim())
+              .filter(Boolean);
+
+            if (
+              ctx.user.discordId &&
+              whitelistedIds.includes(ctx.user.discordId as string)
+            ) {
+              // Update user to mark as blog admin
+              try {
+                const { data, error } = await supabase
+                  .from("user")
+                  .update({ is_blog_admin: true })
+                  .eq("discord_id", ctx.user.discordId);
+
+                if (!error) {
+                  console.log(
+                    `User ${ctx.user.discordId} marked as blog admin`,
+                  );
+                }
+              } catch (error) {
+                console.error("Error updating blog admin status:", error);
               }
             }
           }

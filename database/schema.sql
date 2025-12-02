@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS "user" (
     avatar TEXT,
     username TEXT UNIQUE,
     discord_id TEXT UNIQUE,
+    is_blog_admin BOOLEAN NOT NULL DEFAULT false,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -58,10 +59,21 @@ CREATE TABLE IF NOT EXISTS "verification" (
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+-- Blog admin whitelist table
+CREATE TABLE IF NOT EXISTS "blog_admin_whitelist" (
+    id TEXT PRIMARY KEY DEFAULT gen_random_uuid()::text,
+    discord_id TEXT NOT NULL UNIQUE,
+    added_by TEXT,
+    notes TEXT,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
 -- Create indexes for better performance
 CREATE INDEX IF NOT EXISTS idx_user_email ON "user"(email);
 CREATE INDEX IF NOT EXISTS idx_user_discord_id ON "user"(discord_id);
 CREATE INDEX IF NOT EXISTS idx_user_username ON "user"(username);
+CREATE INDEX IF NOT EXISTS idx_user_is_blog_admin ON "user"(is_blog_admin) WHERE is_blog_admin = true;
 CREATE INDEX IF NOT EXISTS idx_session_token ON "session"(token);
 CREATE INDEX IF NOT EXISTS idx_session_user_id ON "session"(user_id);
 CREATE INDEX IF NOT EXISTS idx_account_user_id ON "account"(user_id);
