@@ -38,6 +38,23 @@
           "value": "1; mode=block"
         }
       ]
+    },
+    {
+      "source": "/blog",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "frame-src https://awfixer.blog https://cdn.jsdelivr.net; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'"
+        }
+      ]
     }
   ]
 }
