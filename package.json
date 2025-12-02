@@ -79,6 +79,7 @@
 		"fumadocs-ui": "^16.2.1",
 		"graphql": "^16.12.0",
 		"gsap": "^3.13.0",
+		"import-in-the-middle": "^2.0.0",
 		"input-otp": "^1.4.2",
 		"lucide-react": "^0.555.0",
 		"motion": "^12.23.12",
