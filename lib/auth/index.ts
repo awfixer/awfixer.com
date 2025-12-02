@@ -23,23 +23,26 @@ export {
 
 // Common auth constants
 export const AUTH_ROUTES = {
-  SIGN_IN: "/auth/sign-in",
-  SIGN_UP: "/auth/sign-up",
+  DISCORD_SIGN_IN: "/api/auth/sign-in/discord",
   CALLBACK: "/api/auth/callback",
   DISCORD_CALLBACK: "/api/auth/callback/discord",
+  COMPLETE_PROFILE: "/auth/complete-profile",
 } as const;
 
+// Only the homepage is public - everything else requires Discord auth
+export const PUBLIC_ROUTES = [
+  "/", // Main homepage only
+] as const;
+
+// All routes except homepage require authentication
 export const PROTECTED_ROUTES = [
+  "/blog",
+  "/help",
+  "/help/docs",
   "/dashboard",
   "/profile",
   "/settings",
 ] as const;
 
-export const PUBLIC_ROUTES = [
-  "/",
-  "/blog",
-  "/help",
-  "/help/docs",
-  "/auth/sign-in",
-  "/auth/sign-up",
-] as const;
+// Site-wide protection policy: Discord auth required for all content
+export const SITE_PROTECTION_ENABLED = true;

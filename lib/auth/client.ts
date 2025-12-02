@@ -24,34 +24,19 @@ export const useAuth = () => {
   };
 };
 
-// Discord sign-in helper
-export const signInWithDiscord = () => {
-  return signIn.social({
-    provider: "discord",
-    callbackURL: "/dashboard", // Redirect after successful login
-  });
+// Discord sign-in helper - direct redirect to Discord OAuth
+export const signInWithDiscord = (callbackUrl?: string) => {
+  const redirectUrl = callbackUrl || window.location.pathname;
+  window.location.href = `/api/auth/sign-in/discord?callbackUrl=${encodeURIComponent(redirectUrl)}`;
 };
 
-// Email/password sign-in helper
-export const signInWithCredentials = async (
-  email: string,
-  password: string,
-) => {
-  return signIn.email({
-    email,
-    password,
-  });
+// Check if user needs to complete profile
+export const needsProfileCompletion = (user: any) => {
+  return !user?.name || !user?.username;
 };
 
-// Sign-up helper
-export const signUpWithCredentials = async (
-  email: string,
-  password: string,
-  name?: string,
-) => {
-  return signUp.email({
-    email,
-    password,
-    name,
-  });
+// Redirect to Discord auth with return URL
+export const redirectToDiscordAuth = (returnUrl?: string) => {
+  const callbackUrl = returnUrl || window.location.pathname;
+  window.location.href = `/api/auth/sign-in/discord?callbackUrl=${encodeURIComponent(callbackUrl)}`;
 };

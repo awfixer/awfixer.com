@@ -29,11 +29,11 @@ export const getCurrentUser = async (): Promise<User | null> => {
 };
 
 /**
- * Require authentication - redirects to login if not authenticated
+ * Require authentication - redirects to Discord login if not authenticated
  * Use in server components or server actions
  */
 export const requireAuth = async (
-  redirectTo = "/auth/sign-in",
+  redirectTo = "/api/auth/sign-in/discord",
 ): Promise<User> => {
   const user = await getCurrentUser();
 
@@ -53,6 +53,14 @@ export const isAuthenticated = async (): Promise<boolean> => {
 };
 
 /**
+ * Check if user needs profile completion
+ */
+export const needsProfileCompletion = async (): Promise<boolean> => {
+  const user = await getCurrentUser();
+  return user ? !user.name || !user.username : false;
+};
+
+/**
  * Get user by ID (admin function)
  */
 export const getUserById = async (id: string): Promise<User | null> => {
@@ -66,6 +74,16 @@ export const getUserById = async (id: string): Promise<User | null> => {
     console.error("Failed to get user by ID:", error);
     return null;
   }
+};
+
+/**
+ * Redirect to Discord authentication
+ */
+export const redirectToDiscordAuth = (returnUrl?: string) => {
+  const callbackUrl = returnUrl
+    ? `?callbackUrl=${encodeURIComponent(returnUrl)}`
+    : "";
+  redirect(`/api/auth/sign-in/discord${callbackUrl}`);
 };
 
 /**

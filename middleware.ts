@@ -21,17 +21,37 @@ const auth = betterAuth({
   },
 });
 
-// Protected routes that require authentication
-const PROTECTED_ROUTES = ["/dashboard", "/profile", "/settings"];
-
-// Public routes that don't require authentication
+// Public routes that don't require authentication (very restricted)
 const PUBLIC_ROUTES = [
-  "/",
-  "/blog",
-  "/help",
-  "/auth/sign-in",
-  "/auth/sign-up",
-  "/api/auth",
+  "/", // Only the main homepage
+  "/api/auth", // Auth API routes
+];
+
+// Static and system routes that should be allowed
+const SYSTEM_ROUTES = [
+  "/_next",
+  "/favicon.ico",
+  "/robots.txt",
+  "/sitemap.xml",
+  "/manifest.json",
+  "/api/health",
+];
+
+// File extensions that should be allowed (for assets)
+const ALLOWED_EXTENSIONS = [
+  ".css",
+  ".js",
+  ".ico",
+  ".png",
+  ".jpg",
+  ".jpeg",
+  ".gif",
+  ".svg",
+  ".webp",
+  ".woff",
+  ".woff2",
+  ".ttf",
+  ".eot",
 ];
 
 const paymentMW = paymentMiddleware(
@@ -49,7 +69,7 @@ const paymentMW = paymentMiddleware(
     url: facilitatorUrl,
   },
   {
-    appName: "Next x402 Demo",
+    appName: "AWFixer",
     appLogo: "/x402-icon-blue.png",
   },
 );
@@ -57,61 +77,71 @@ const paymentMW = paymentMiddleware(
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Skip auth check for public routes and API routes
+  // Allow system routes and static files
   if (
-    PUBLIC_ROUTES.some((route) => pathname.startsWith(route)) ||
-    pathname.startsWith("/api/auth") ||
-    pathname.startsWith("/_next") ||
-    pathname.includes(".")
+    SYSTEM_ROUTES.some((route) => pathname.startsWith(route)) ||
+    ALLOWED_EXTENSIONS.some((ext) => pathname.endsWith(ext))
   ) {
-    // Still apply payment middleware if needed
-    if (pathname.startsWith("/protected")) {
-      return paymentMW(request);
-    }
     return NextResponse.next();
   }
 
-  // Check authentication for protected routes
-  if (PROTECTED_ROUTES.some((route) => pathname.startsWith(route))) {
-    try {
-      const session = await auth.api.getSession({
-        headers: request.headers,
-      });
+  // Allow auth API routes without checking authentication
+  if (pathname.startsWith("/api/auth")) {
+    return NextResponse.next();
+  }
 
-      if (!session?.user) {
-        // Redirect to sign in with return URL
-        const signInUrl = new URL("/auth/sign-in", request.url);
-        signInUrl.searchParams.set("callbackUrl", pathname);
-        return NextResponse.redirect(signInUrl);
-      }
-    } catch (error) {
-      console.error("Auth check failed:", error);
-      // Redirect to sign in on auth error
-      const signInUrl = new URL("/auth/sign-in", request.url);
+  // Allow only the main homepage without authentication
+  if (pathname === "/" || PUBLIC_ROUTES.includes(pathname)) {
+    return NextResponse.next();
+  }
+
+  // For all other routes, require authentication
+  try {
+    const session = await auth.api.getSession({
+      headers: request.headers,
+    });
+
+    if (!session?.user) {
+      // Redirect to Discord auth with return URL
+      const signInUrl = new URL("/api/auth/sign-in/discord", request.url);
       signInUrl.searchParams.set("callbackUrl", pathname);
       return NextResponse.redirect(signInUrl);
     }
+
+    // User is authenticated, check if they need to complete profile
+    if (!session.user.name && pathname !== "/auth/complete-profile") {
+      const completeProfileUrl = new URL("/auth/complete-profile", request.url);
+      completeProfileUrl.searchParams.set("callbackUrl", pathname);
+      return NextResponse.redirect(completeProfileUrl);
+    }
+  } catch (error) {
+    console.error("Auth check failed:", error);
+    // Redirect to Discord auth on any auth error
+    const signInUrl = new URL("/api/auth/sign-in/discord", request.url);
+    signInUrl.searchParams.set("callbackUrl", pathname);
+    return NextResponse.redirect(signInUrl);
   }
 
-  // Apply payment middleware if needed
+  // Apply payment middleware if needed for protected content
   if (pathname.startsWith("/protected")) {
     return paymentMW(request);
   }
 
+  // Allow authenticated users to access all other content
   return NextResponse.next();
 }
 
-// Configure which paths the middleware should run on
+// Configure which paths the middleware should run on (everything except auth API)
 export const config = {
   matcher: [
     /*
-     * Match all request paths except for the ones starting with:
-     * - api/auth (auth API routes)
+     * Match all request paths except for:
+     * - api/auth/* (auth API routes)
      * - _next/static (static files)
      * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
+     * But include all other paths to enforce authentication
      */
-    "/((?!api/auth|_next/static|_next/image|favicon.ico).*)",
+    "/((?!api/auth|_next/static|_next/image).*)",
   ],
   runtime: "nodejs",
 };

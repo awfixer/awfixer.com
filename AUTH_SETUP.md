@@ -1,6 +1,6 @@
-# Better-Auth with Discord Setup Guide
+# Site-Wide Discord Authentication Setup Guide
 
-This guide will help you set up better-auth with Discord OAuth for your AWFixer project.
+This guide will help you set up mandatory Discord authentication for your AWFixer project. **All pages except the homepage require Discord authentication** to prevent scraping and protect content.
 
 ## Prerequisites
 
@@ -46,14 +46,30 @@ Generate a secure secret for `BETTER_AUTH_SECRET`:
 openssl rand -base64 32
 ```
 
-## 4. Usage Examples
+## 4. Site Protection Policy
+
+### Authentication Requirements
+- **Homepage (`/`)**: Public access (no authentication required)
+- **All other pages**: Discord authentication mandatory
+- **Blog, Help, Documentation**: Protected behind Discord auth
+- **API routes**: `/api/auth/*` excluded from protection
+- **Static assets**: CSS, JS, images excluded from protection
+
+### Middleware Protection
+The middleware automatically:
+- Redirects unauthenticated users to Discord OAuth
+- Preserves return URLs for seamless post-auth navigation
+- Handles profile completion flow for new users
+- Protects against scraping and unauthorized access
+
+## 5. Usage Examples
 
 ### Basic Authentication Components
 
 ```tsx
-import { AuthProvider, SignInButton, UserAvatar } from '@components/main/Auth'
+import { AuthProvider, SignInButton, UserAvatar, AuthWall } from '@components/main/Auth'
 
-// Wrap your app with AuthProvider
+// Wrap your app with AuthProvider (required)
 function App() {
   return (
     <AuthProvider>
@@ -62,18 +78,24 @@ function App() {
   )
 }
 
-// Use authentication components
-function Header() {
+// Auth wall for protected content (fallback)
+function ProtectedPage() {
   const { isAuthenticated } = useAuth()
   
+  if (!isAuthenticated) {
+    return <AuthWall title="Access Restricted" />
+  }
+  
+  return <YourProtectedContent />
+}
+
+// Homepage component (public)
+function Homepage() {
   return (
-    <header>
-      {isAuthenticated ? (
-        <UserAvatar showName showDropdown />
-      ) : (
-        <SignInButton>Sign in with Discord</SignInButton>
-      )}
-    </header>
+    <div>
+      <h1>Welcome to AWFixer</h1>
+      <SignInButton>Join Discord Community</SignInButton>
+    </div>
   )
 }
 ```
@@ -106,26 +128,36 @@ export default async function DashboardPage() {
 
 ```tsx
 'use client'
-import { useAuth, signInWithDiscord } from '@components/main/Auth'
+import { useAuth, signInWithDiscord, AuthWall } from '@components/main/Auth'
 
-function LoginForm() {
+function ProtectedContent() {
   const { user, isLoading, isAuthenticated } = useAuth()
   
   if (isLoading) return <div>Loading...</div>
   
-  if (isAuthenticated) {
-    return <div>Welcome back, {user?.name}!</div>
+  if (!isAuthenticated) {
+    return <AuthWall title="Authentication Required" />
   }
   
   return (
-    <button onClick={signInWithDiscord}>
+    <div>
+      <h1>Welcome back, {user?.name}!</h1>
+      <p>This content is protected from scraping.</p>
+    </div>
+  )
+}
+
+// Direct Discord sign-in (redirects immediately)
+function QuickSignIn() {
+  return (
+    <button onClick={() => signInWithDiscord()}>
       Sign in with Discord
     </button>
   )
 }
 ```
 
-## 5. Available Auth Components
+## 6. Available Auth Components
 
 ### `<AuthProvider>`
 Wrap your app to provide authentication context.
@@ -160,16 +192,31 @@ Wrap your app to provide authentication context.
 />
 ```
 
-## 6. Protected Routes
+### `<AuthWall>` and Variants
+```tsx
+// Generic auth wall
+<AuthWall 
+  title="Authentication Required" 
+  message="Sign in with Discord to continue" 
+/>
 
-Routes are automatically protected by middleware:
+// Specific variants
+<BlogAuthWall />
+<DocsAuthWall />
+<DashboardAuthWall />
+```
 
-- **Protected routes**: `/dashboard`, `/profile`, `/settings`
-- **Public routes**: `/`, `/blog`, `/help`, `/auth/*`
+## 7. Site-Wide Protection
 
-To add more protected routes, update the `PROTECTED_ROUTES` array in `middleware.ts`.
+**All routes except homepage require Discord authentication:**
 
-## 7. API Reference
+- **Public routes**: `/` (homepage only)
+- **Protected routes**: Everything else (`/blog`, `/help`, `/dashboard`, etc.)
+- **System routes**: Static assets and auth APIs are excluded
+
+The middleware handles protection automatically. No manual route configuration needed.
+
+## 8. API Reference
 
 ### Client-side Hooks and Functions
 
@@ -177,19 +224,21 @@ To add more protected routes, update the `PROTECTED_ROUTES` array in `middleware
 import { 
   useAuth,
   signInWithDiscord,
-  signInWithCredentials,
-  signUpWithCredentials 
+  redirectToDiscordAuth,
+  needsProfileCompletion
 } from '@root/lib/auth'
 
 // Hook for auth state
 const { user, session, isLoading, isAuthenticated } = useAuth()
 
-// OAuth sign-in
-await signInWithDiscord()
+// Discord OAuth sign-in (redirects immediately)
+signInWithDiscord(callbackUrl)
 
-// Email/password authentication
-await signInWithCredentials(email, password)
-await signUpWithCredentials(email, password, name)
+// Alternative redirect method
+redirectToDiscordAuth(returnUrl)
+
+// Check if user needs profile completion
+const needsCompletion = needsProfileCompletion(user)
 ```
 
 ### Server-side Functions
@@ -213,7 +262,7 @@ const authenticated = await isAuthenticated()
 const user = await requireAuth('/auth/sign-in')
 ```
 
-## 8. Database Schema
+## 9. Database Schema
 
 The setup creates these tables in Supabase:
 
@@ -222,7 +271,15 @@ The setup creates these tables in Supabase:
 - **account**: OAuth account connections
 - **verification**: Email verification and password reset tokens
 
-## 9. Security Features
+## 10. Security Features
+
+### Site-Wide Protection
+- **Mandatory Discord authentication** for all content
+- **Scraping prevention** through auth gates
+- **Community-based access control**
+- **Profile completion enforcement**
+
+### Technical Security
 
 - Row Level Security (RLS) policies
 - Secure session management
@@ -230,7 +287,22 @@ The setup creates these tables in Supabase:
 - Automatic token refresh
 - Secure cookie handling
 
-## 10. Customization
+## 11. Profile Completion Flow
+
+New Discord users are automatically redirected to complete their profile:
+
+1. User signs in with Discord
+2. If `name` or `username` is missing, redirect to `/auth/complete-profile`
+3. User completes required profile fields
+4. User is redirected to original destination
+
+### Custom Profile Fields
+Add fields to the completion form by updating:
+- `app/auth/complete-profile/page.tsx`
+- `app/api/auth/update-profile/route.ts`
+- Database schema
+
+## 12. Customization
 
 ### Custom User Fields
 
@@ -252,32 +324,46 @@ user: {
 }
 ```
 
-### Custom Callbacks
+### Custom Protection Rules
 
 ```tsx
-// In auth.ts
-callbacks: {
-  async onSignUp({ user, account }) {
-    // Handle new user signup
-    console.log('New user:', user.email)
-    return true
-  },
-  async onSignIn({ user, account }) {
-    // Handle user sign in
-    console.log('User signed in:', user.email)
-    return true
-  },
+// In middleware.ts - modify protection logic
+const isProtectedRoute = (pathname: string) => {
+  // Only homepage is public
+  if (pathname === '/') return false
+  
+  // Add custom public routes if needed
+  const customPublicRoutes = ['/special-public-page']
+  if (customPublicRoutes.includes(pathname)) return false
+  
+  // Everything else requires auth
+  return true
 }
 ```
 
-## 11. Production Deployment
+### Custom Auth Walls
+
+```tsx
+// Create custom auth wall variants
+export function CustomAuthWall() {
+  return (
+    <AuthWall
+      title="Custom Access Required"
+      message="Your custom message here"
+      className="custom-styling"
+    />
+  )
+}
+```
+
+## 13. Production Deployment
 
 1. Update environment variables in your hosting platform
 2. Update Discord OAuth redirect URIs for production
 3. Ensure Supabase RLS policies are properly configured
 4. Test authentication flow in production environment
 
-## 12. Troubleshooting
+## 14. Troubleshooting
 
 ### Common Issues
 
@@ -295,19 +381,52 @@ callbacks: {
 - Verify BETTER_AUTH_SECRET is set
 - Check if middleware is running correctly
 
+**"User bypassing auth wall"**
+- Check middleware configuration
+- Verify route patterns in middleware config
+- Ensure auth wall components are properly implemented
+
 ### Debug Mode
 
 Enable debug logging by setting:
 ```bash
 DEBUG=better-auth:*
+NODE_ENV=development
 ```
 
-## 13. Next Steps
+### Testing Protection
 
-- Set up email verification (optional)
-- Configure password reset flow (optional)
-- Add additional OAuth providers (GitHub, Google, etc.)
-- Implement role-based access control
-- Set up webhook handlers for user events
+Test your protection by:
+1. Opening incognito browser
+2. Trying to access `/blog` or `/help` directly
+3. Should redirect to Discord OAuth
+4. After auth, should return to original page
+
+## 15. Next Steps
+
+### Enhanced Protection
+- Implement rate limiting for auth endpoints
+- Add CAPTCHA for suspicious traffic
+- Set up IP-based blocking for persistent scrapers
+
+### Community Features
+- Role-based access within Discord community
+- Premium content tiers based on Discord roles
+- Community-specific features and permissions
+
+### Monitoring
+- Track authentication metrics
+- Monitor for scraping attempts
+- Set up alerts for unusual access patterns
 
 For more information, see the [better-auth documentation](https://www.better-auth.com/docs).
+
+## 16. Important Notes
+
+⚠️ **This setup provides site-wide protection** - only the homepage is publicly accessible.
+
+✅ **All content is protected** from scraping and unauthorized access.
+
+🔒 **Discord authentication is mandatory** for all users accessing content.
+
+📱 **Mobile-friendly** Discord OAuth flow ensures seamless access across devices.
