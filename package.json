@@ -11,6 +11,7 @@
     "types:check": "fumadocs-mdx && tsc --noEmit"
   },
   "dependencies": {
+    "@coinbase/x402": "^0.7.3",
     "@faceless-ui/collapsibles": "2.0.0-beta.1",
     "@faceless-ui/css-grid": "^1.2.1",
     "@faceless-ui/jumplist": "^1.0.10",
@@ -90,6 +91,9 @@
     "tailwind-merge": "^3.4.0",
     "vaul": "^1.1.2",
     "vercel": "^48.12.0",
+    "x402-express": "^0.7.3",
+    "x402-hono": "^0.7.3",
+    "x402-next": "^0.7.3",
     "zod": "^4.1.13"
   },
   "devDependencies": {
@@ -104,16 +108,20 @@
     "typescript": "^5"
   },
   "engines": {
-    "node": "^24.0.0",
+    "node": "^22.0.0",
     "pnpm": "^10.0.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
+      "@coinbase/x402",
       "@parcel/watcher",
       "@sentry/cli",
+      "bufferutil",
       "esbuild",
+      "keccak",
       "sharp",
-      "unrs-resolver"
+      "unrs-resolver",
+      "utf-8-validate"
     ]
   }
 }
