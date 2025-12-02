@@ -1,6 +1,6 @@
 'use client'
 
-import { CopyToClipboard } from '@components/CopyToClipboard/index'
+import { CopyToClipboard } from '@/components/CopyToClipboard/index'
 import React from 'react'
 
 import classes from './index.module.scss'

@@ -1,4 +1,4 @@
-import { Pill } from '@components/Pill/index'
+import { Pill } from '@/components/Pill/index'
 import { CheckIcon } from '@root/icons/CheckIcon/index'
 import React, { Fragment } from 'react'
 

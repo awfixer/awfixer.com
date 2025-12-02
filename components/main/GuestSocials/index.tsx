@@ -1,6 +1,6 @@
 import type { Post } from '@types'
 
-import { SocialIcon } from '@components/SocialIcon'
+import { SocialIcon } from '@/components/SocialIcon'
 
 type GuestSocialProps = {
   className?: string

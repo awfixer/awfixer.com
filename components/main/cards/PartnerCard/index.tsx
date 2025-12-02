@@ -1,7 +1,7 @@
 import type { Partner } from '@root/payload-types'
 
-import { BackgroundScanline } from '@components/BackgroundScanline'
-import { Media } from '@components/Media'
+import { BackgroundScanline } from '@/components/BackgroundScanline'
+import { Media } from '@/components/Media'
 import { ArrowIcon } from '@root/icons/ArrowIcon'
 import Link from 'next/link'
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { signOut } from '@root/lib/auth/client'
-import { Button } from '@components/ui/button'
+import { Button } from '@/components/ui/button'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 

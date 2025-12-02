@@ -1,5 +1,5 @@
 'use client'
-import type { DocsVersion } from '@components/RenderDocs'
+import type { DocsVersion } from '@/components/RenderDocs'
 
 import { MenuIcon } from '@graphics/MenuIcon'
 import * as Accordion from '@radix-ui/react-accordion'

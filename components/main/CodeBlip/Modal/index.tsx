@@ -1,6 +1,6 @@
 'use client'
-import { CMSLink } from '@components/CMSLink/index'
-import { RichText } from '@components/RichText/index'
+import { CMSLink } from '@/components/CMSLink/index'
+import { RichText } from '@/components/RichText/index'
 import { CloseIcon } from '@root/icons/CloseIcon/index'
 import { cubicBezier, motion, useAnimate } from 'framer-motion'
 import React, { useEffect, useId, useRef, useState } from 'react'

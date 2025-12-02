@@ -1,8 +1,8 @@
 'use client'
 
-import type { ButtonProps } from '@components/Button/index'
+import type { ButtonProps } from '@/components/Button/index'
 
-import { Button } from '@components/Button/index'
+import { Button } from '@/components/Button/index'
 import { useFormProcessing } from '@forms/Form/context'
 import React, { forwardRef } from 'react'
 

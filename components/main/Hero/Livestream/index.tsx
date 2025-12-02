@@ -2,11 +2,11 @@
 
 import type { Page } from '@root/payload-types'
 
-import { Breadcrumbs } from '@components/Breadcrumbs/index'
-import { Button } from '@components/Button/index'
-import { Gutter } from '@components/Gutter/index'
-import { RichText } from '@components/RichText/index'
-import { Video } from '@components/RichText/Video/index'
+import { Breadcrumbs } from '@/components/Breadcrumbs/index'
+import { Button } from '@/components/Button/index'
+import { Gutter } from '@/components/Gutter/index'
+import { RichText } from '@/components/RichText/index'
+import { Video } from '@/components/RichText/Video/index'
 import { formatDate } from '@utilities/format-date-time'
 import * as React from 'react'
 

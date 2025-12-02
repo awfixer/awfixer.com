@@ -1,5 +1,5 @@
-import { CMSForm } from '@components/CMSForm'
-import { Drawer, DrawerToggler } from '@components/Drawer'
+import { CMSForm } from '@/components/CMSForm'
+import { Drawer, DrawerToggler } from '@/components/Drawer'
 import { fetchForm } from '@data'
 import { ArrowIcon } from '@icons/ArrowIcon'
 import { unstable_cache } from 'next/cache'

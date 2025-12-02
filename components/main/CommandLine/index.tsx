@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@components/Button'
+import { Button } from '@/components/Button'
 import { CheckIcon } from '@icons/CheckIcon'
 import { CopyIcon } from '@icons/CopyIcon'
 import React from 'react'

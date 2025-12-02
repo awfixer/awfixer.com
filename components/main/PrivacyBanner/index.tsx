@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@components/Button/index'
+import { Button } from '@/components/Button/index'
 import { usePrivacy } from '@root/providers/Privacy/index'
 import Link from 'next/link'
 import * as React from 'react'

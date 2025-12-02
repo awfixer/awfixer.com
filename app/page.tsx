@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { SignInButton } from "@components/main/Auth";
+import { SignInButton } from "@/components/main/Auth";
 
 export default function Home() {
   return (

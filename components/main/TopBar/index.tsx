@@ -1,6 +1,6 @@
 import type { TopBar as TopBarType } from '@root/payload-types'
 
-import { CMSLink } from '@components/CMSLink'
+import { CMSLink } from '@/components/CMSLink'
 import { ArrowIcon } from '@icons/ArrowIcon'
 
 import classes from './index.module.scss'

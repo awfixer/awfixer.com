@@ -1,11 +1,11 @@
 'use client'
 import type { Page } from '@root/payload-types'
 
-import { BackgroundScanline } from '@components/BackgroundScanline/index'
-import { CMSLink } from '@components/CMSLink/index'
-import { Media } from '@components/Media/index'
-import { RichText } from '@components/RichText/index'
-import SplitAnimate from '@components/SplitAnimate/index'
+import { BackgroundScanline } from '@/components/BackgroundScanline/index'
+import { CMSLink } from '@/components/CMSLink/index'
+import { Media } from '@/components/Media/index'
+import { RichText } from '@/components/RichText/index'
+import SplitAnimate from '@/components/SplitAnimate/index'
 import {
   Collapsible,
   CollapsibleContent,

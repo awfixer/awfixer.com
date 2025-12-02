@@ -1,4 +1,4 @@
-import { BackgroundScanline } from '@components/BackgroundScanline/index'
+import { BackgroundScanline } from '@/components/BackgroundScanline/index'
 import { ArrowIcon } from '@root/icons/ArrowIcon/index'
 import React from 'react'
 

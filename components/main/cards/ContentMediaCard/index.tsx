@@ -1,5 +1,5 @@
-import { BackgroundScanline } from '@components/BackgroundScanline/index'
-import { Media } from '@components/Media/index'
+import { BackgroundScanline } from '@/components/BackgroundScanline/index'
+import { Media } from '@/components/Media/index'
 import { formatDate } from '@root/utilities/format-date-time'
 import Image from 'next/image'
 import Link from 'next/link'

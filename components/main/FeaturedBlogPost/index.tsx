@@ -1,7 +1,7 @@
 import type { Post } from '@root/payload-types'
 
-import { BackgroundScanline } from '@components/BackgroundScanline/index'
-import { Media } from '@components/Media/index'
+import { BackgroundScanline } from '@/components/BackgroundScanline/index'
+import { Media } from '@/components/Media/index'
 import { formatDate } from '@utilities/format-date-time'
 import Link from 'next/link'
 import * as React from 'react'

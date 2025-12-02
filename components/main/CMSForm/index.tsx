@@ -2,7 +2,7 @@
 
 import type { Form as FormType } from '@root/payload-types'
 
-import { RichText } from '@components/RichText/index'
+import { RichText } from '@/components/RichText/index'
 import Form from '@forms/Form/index'
 import { CrosshairIcon } from '@root/icons/CrosshairIcon/index'
 import { getCookie } from '@root/utilities/get-cookie'

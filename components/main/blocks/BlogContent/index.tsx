@@ -1,7 +1,7 @@
 import type { ReusableContent } from '@root/payload-types'
 
-import { Gutter } from '@components/Gutter/index'
-import { RichText } from '@components/RichText/index'
+import { Gutter } from '@/components/Gutter/index'
+import { RichText } from '@/components/RichText/index'
 import React from 'react'
 
 type Props = Extract<ReusableContent['layout'][0], { blockType: 'blogContent' }>

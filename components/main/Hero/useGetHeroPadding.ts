@@ -1,9 +1,9 @@
-import type { PaddingProps, Settings } from '@components/BlockWrapper/index'
-import type { BlocksProp } from '@components/RenderBlocks/index'
+import type { PaddingProps, Settings } from '@/components/BlockWrapper/index'
+import type { BlocksProp } from '@/components/RenderBlocks/index'
 import type { Page } from '@root/payload-types'
 import type { Theme } from '@root/providers/Theme/types'
 
-import { getFieldsKeyFromBlock } from '@components/RenderBlocks/utilities'
+import { getFieldsKeyFromBlock } from '@/components/RenderBlocks/utilities'
 import { useThemePreference } from '@root/providers/Theme/index'
 import { useEffect, useMemo, useState } from 'react'
 

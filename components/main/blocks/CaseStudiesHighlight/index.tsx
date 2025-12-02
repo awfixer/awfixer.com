@@ -1,8 +1,8 @@
 'use client'
 import type { CaseStudy, ReusableContent } from '@root/payload-types'
 
-import { Gutter } from '@components/Gutter/index'
-import { RichText } from '@components/RichText/index'
+import { Gutter } from '@/components/Gutter/index'
+import { RichText } from '@/components/RichText/index'
 import { useMouseInfo } from '@faceless-ui/mouse-info'
 import { PayloadIcon } from '@graphics/PayloadIcon/index'
 import Image from 'next/image'

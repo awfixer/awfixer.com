@@ -1,5 +1,5 @@
 'use client'
-import { Drawer, DrawerToggler } from '@components/Drawer/index'
+import { Drawer, DrawerToggler } from '@/components/Drawer/index'
 import { CodeIcon } from '@root/icons/CodeIcon/index'
 import React from 'react'
 

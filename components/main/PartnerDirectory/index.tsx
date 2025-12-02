@@ -2,10 +2,10 @@
 
 import type { Budget, Industry, Partner, Region, Specialty } from '@root/payload-types'
 
-import { BackgroundGrid } from '@components/BackgroundGrid'
-import { BlockWrapper } from '@components/BlockWrapper'
-import { Gutter } from '@components/Gutter'
-import { PartnerGrid } from '@components/PartnerGrid'
+import { BackgroundGrid } from '@/components/BackgroundGrid'
+import { BlockWrapper } from '@/components/BlockWrapper'
+import { Gutter } from '@/components/Gutter'
+import { PartnerGrid } from '@/components/PartnerGrid'
 import { ChevronDownIcon } from '@root/icons/ChevronDownIcon'
 import { CloseIcon } from '@root/icons/CloseIcon'
 import { useEffect, useState } from 'react'

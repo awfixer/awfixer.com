@@ -1,6 +1,6 @@
 'use client'
 
-import { Banner } from '@components/Banner'
+import { Banner } from '@/components/Banner'
 import { ArrowRightIcon } from '@icons/ArrowRightIcon'
 import { PlayIcon } from '@icons/PlayIcon'
 import { qs } from '@root/utilities/qs'

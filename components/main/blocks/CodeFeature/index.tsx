@@ -1,19 +1,19 @@
 'use client'
 
-import type { PaddingProps } from '@components/BlockWrapper/index'
+import type { PaddingProps } from '@/components/BlockWrapper/index'
 import type { Page } from '@root/payload-types'
 
-import { BackgroundGrid } from '@components/BackgroundGrid/index'
-import { BackgroundScanline } from '@components/BackgroundScanline/index'
-import { BlockWrapper } from '@components/BlockWrapper/index'
-import { CMSLink } from '@components/CMSLink/index'
-import Code from '@components/Code/index'
-import CodeBlip from '@components/CodeBlip/index'
+import { BackgroundGrid } from '@/components/BackgroundGrid/index'
+import { BackgroundScanline } from '@/components/BackgroundScanline/index'
+import { BlockWrapper } from '@/components/BlockWrapper/index'
+import { CMSLink } from '@/components/CMSLink/index'
+import Code from '@/components/Code/index'
+import CodeBlip from '@/components/CodeBlip/index'
 const CodeBlipProvider = CodeBlip.Provider
 
-import { Gutter } from '@components/Gutter/index'
-import { RichText } from '@components/RichText/index'
-import SplitAnimate from '@components/SplitAnimate/index'
+import { Gutter } from '@/components/Gutter/index'
+import { RichText } from '@/components/RichText/index'
+import SplitAnimate from '@/components/SplitAnimate/index'
 import { CrosshairIcon } from '@root/icons/CrosshairIcon/index'
 import React, { useEffect, useId, useRef, useState } from 'react'
 

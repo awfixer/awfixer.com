@@ -1,6 +1,6 @@
 'use client'
 
-import CodeBlip from '@components/CodeBlip/index'
+import CodeBlip from '@/components/CodeBlip/index'
 import { Highlight } from 'prism-react-renderer'
 import React, { useCallback } from 'react'
 

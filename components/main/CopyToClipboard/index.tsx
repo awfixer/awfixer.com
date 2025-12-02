@@ -1,5 +1,5 @@
 'use client'
-import { Tooltip } from '@components/Tooltip/index'
+import { Tooltip } from '@/components/Tooltip/index'
 import { CopyIcon } from '@root/icons/CopyIcon/index'
 import React, { useCallback, useRef, useState } from 'react'
 

@@ -1,4 +1,4 @@
-import Code from '@components/Code/index'
+import Code from '@/components/Code/index'
 import React from 'react'
 
 import classes from './index.module.scss'

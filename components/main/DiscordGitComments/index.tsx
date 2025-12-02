@@ -4,10 +4,10 @@ import type {
   Comment,
 } from '@root/app/(frontend)/(pages)/community-help/(posts)/github/[slug]/client_page'
 
-import AuthorTag from '@components/AuthorTag/index'
-import { BackgroundScanline } from '@components/BackgroundScanline/index'
-import { DiscordGitBody } from '@components/DiscordGitBody/index'
-import { FileAttachments } from '@components/FileAttachment/index'
+import AuthorTag from '@/components/AuthorTag/index'
+import { BackgroundScanline } from '@/components/BackgroundScanline/index'
+import { DiscordGitBody } from '@/components/DiscordGitBody/index'
+import { FileAttachments } from '@/components/FileAttachment/index'
 import * as cheerio from 'cheerio'
 import React from 'react'
 

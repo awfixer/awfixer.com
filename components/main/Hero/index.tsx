@@ -1,7 +1,7 @@
-import type { BlocksProp } from '@components/RenderBlocks/index'
+import type { BlocksProp } from '@/components/RenderBlocks/index'
 import type { Page } from '@root/payload-types'
 
-import BreadcrumbsBar from '@components/Hero/BreadcrumbsBar/index'
+import BreadcrumbsBar from '@/components/Hero/BreadcrumbsBar/index'
 import React from 'react'
 
 import { CenteredContent } from './CenteredContent/index'

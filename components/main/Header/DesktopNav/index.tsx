@@ -1,8 +1,8 @@
 import type { MainMenu } from '@root/payload-types'
 
-import { Avatar } from '@components/Avatar/index'
-import { Gutter } from '@components/Gutter/index'
-import { RichText } from '@components/RichText/index'
+import { Avatar } from '@/components/Avatar/index'
+import { Gutter } from '@/components/Gutter/index'
+import { RichText } from '@/components/RichText/index'
 import { GitHubIcon } from '@root/graphics/GitHub/index'
 import { ArrowIcon } from '@root/icons/ArrowIcon/index'
 import { useAuth } from '@root/providers/Auth/index'

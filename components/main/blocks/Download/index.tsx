@@ -1,6 +1,6 @@
 import type { DownloadBlockType } from '@root/payload-types'
 
-import { Media } from '@components/Media'
+import { Media } from '@/components/Media'
 
 import { CopyButton, DownloadButton } from './Buttons'
 import classes from './index.module.scss'

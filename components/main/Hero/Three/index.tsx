@@ -1,17 +1,17 @@
 'use client'
 
-import type { BlocksProp } from '@components/RenderBlocks/index'
+import type { BlocksProp } from '@/components/RenderBlocks/index'
 import type { Page } from '@root/payload-types'
 
-import BackgroundGradient from '@components/BackgroundGradient/index'
-import { BackgroundGrid } from '@components/BackgroundGrid/index'
-import { BlockWrapper } from '@components/BlockWrapper/index'
-import { CMSLink } from '@components/CMSLink/index'
-import CreatePayloadApp from '@components/CreatePayloadApp'
-import { Gutter } from '@components/Gutter/index'
-import { MediaStack } from '@components/MediaStack'
-import { NewsletterSignUp } from '@components/NewsletterSignUp'
-import { RichText } from '@components/RichText/index'
+import BackgroundGradient from '@/components/BackgroundGradient/index'
+import { BackgroundGrid } from '@/components/BackgroundGrid/index'
+import { BlockWrapper } from '@/components/BlockWrapper/index'
+import { CMSLink } from '@/components/CMSLink/index'
+import CreatePayloadApp from '@/components/CreatePayloadApp'
+import { Gutter } from '@/components/Gutter/index'
+import { MediaStack } from '@/components/MediaStack'
+import { NewsletterSignUp } from '@/components/NewsletterSignUp'
+import { RichText } from '@/components/RichText/index'
 
 import classes from './index.module.scss'
 

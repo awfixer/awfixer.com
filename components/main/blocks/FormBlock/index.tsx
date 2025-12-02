@@ -1,13 +1,13 @@
 'use client'
 
-import type { PaddingProps } from '@components/BlockWrapper/index'
+import type { PaddingProps } from '@/components/BlockWrapper/index'
 import type { Page } from '@root/payload-types'
 
-import { BackgroundGrid } from '@components/BackgroundGrid/index'
-import { BlockWrapper } from '@components/BlockWrapper/index'
-import { CMSForm } from '@components/CMSForm/index'
-import { Gutter } from '@components/Gutter/index'
-import { RichText } from '@components/RichText/index'
+import { BackgroundGrid } from '@/components/BackgroundGrid/index'
+import { BlockWrapper } from '@/components/BlockWrapper/index'
+import { CMSForm } from '@/components/CMSForm/index'
+import { Gutter } from '@/components/Gutter/index'
+import { RichText } from '@/components/RichText/index'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 

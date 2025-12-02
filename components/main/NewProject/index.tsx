@@ -1,9 +1,9 @@
 import type { Team, Template } from '@root/payload-cloud-types'
 
-import { Banner } from '@components/Banner/index'
-import { Gutter } from '@components/Gutter/index'
-import { Media } from '@components/Media/index'
-import { Pill } from '@components/Pill/index'
+import { Banner } from '@/components/Banner/index'
+import { Gutter } from '@/components/Gutter/index'
+import { Media } from '@/components/Media/index'
+import { Pill } from '@/components/Pill/index'
 import Link from 'next/link'
 import React, { Fragment } from 'react'
 

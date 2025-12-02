@@ -1,7 +1,7 @@
 import type { Post } from '@root/payload-types'
 
-import { ContentMediaCard } from '@components/cards/ContentMediaCard/index'
-import { Gutter } from '@components/Gutter/index'
+import { ContentMediaCard } from '@/components/cards/ContentMediaCard/index'
+import { Gutter } from '@/components/Gutter/index'
 
 import classes from './index.module.scss'
 

@@ -2,7 +2,7 @@
 
 import type { FieldProps } from '@forms/fields/types'
 
-import Label from '@components/CMSForm/Label/index'
+import Label from '@/components/CMSForm/Label/index'
 import Error from '@forms/Error/index'
 import { useField } from '@forms/fields/useField/index'
 import { CheckIcon } from '@root/icons/CheckIcon/index'

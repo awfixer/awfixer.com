@@ -2,7 +2,7 @@
 
 import type { MainMenu } from '@root/payload-types'
 
-import { UniversalTruth } from '@components/UniversalTruth/index'
+import { UniversalTruth } from '@/components/UniversalTruth/index'
 import { useModal } from '@faceless-ui/modal'
 import { useScrollInfo } from '@faceless-ui/scroll-info'
 import { useHeaderObserver } from '@root/providers/HeaderIntersectionObserver/index'

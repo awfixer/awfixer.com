@@ -2,9 +2,9 @@
 
 import type { FieldProps } from '@forms/fields/types'
 
-import Label from '@components/CMSForm/Label/index'
-import { CopyToClipboard } from '@components/CopyToClipboard/index'
-import { Tooltip } from '@components/Tooltip/index'
+import Label from '@/components/CMSForm/Label/index'
+import { CopyToClipboard } from '@/components/CopyToClipboard/index'
+import { Tooltip } from '@/components/Tooltip/index'
 import Error from '@forms/Error/index'
 import { useField } from '@forms/fields/useField/index'
 import { EyeIcon } from '@root/icons/EyeIcon/index'

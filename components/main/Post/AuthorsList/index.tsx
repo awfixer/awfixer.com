@@ -1,8 +1,8 @@
 import type { Post } from '@root/payload-types'
 
-import { GuestSocials } from '@components/GuestSocials'
-import { Label } from '@components/Label/index'
-import { Media } from '@components/Media/index'
+import { GuestSocials } from '@/components/GuestSocials'
+import { Label } from '@/components/Label/index'
+import { Media } from '@/components/Media/index'
 import Link from 'next/link'
 import { Fragment } from 'react'
 

@@ -1,6 +1,6 @@
 import type { Media as MediaType } from '@root/payload-types'
 
-import { Media } from '@components/Media'
+import { Media } from '@/components/Media'
 import Image from 'next/image'
 
 import classes from './index.module.scss'

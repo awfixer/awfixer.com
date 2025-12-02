@@ -1,4 +1,4 @@
-import { Drawer, DrawerToggler } from '@components/Drawer/index'
+import { Drawer, DrawerToggler } from '@/components/Drawer/index'
 import { ChevronIcon } from '@root/icons/ChevronIcon/index'
 import React from 'react'
 

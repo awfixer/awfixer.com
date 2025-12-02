@@ -1,5 +1,5 @@
 'use client'
-import type { AllowedElements } from '@components/SpotlightAnimation/types'
+import type { AllowedElements } from '@/components/SpotlightAnimation/types'
 
 import { cubicBezier, motion, stagger, useAnimate, useInView } from 'framer-motion'
 import React, { useMemo } from 'react'

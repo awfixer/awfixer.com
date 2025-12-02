@@ -1,14 +1,14 @@
-'use client'
+"use client";
 
-import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import { SignInButton } from './SignInButton'
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { SignInButton } from "./SignInButton";
 
 interface AuthWallProps {
-  title?: string
-  message?: string
-  showReturnButton?: boolean
-  className?: string
+  title?: string;
+  message?: string;
+  showReturnButton?: boolean;
+  className?: string;
 }
 
 export function AuthWall({
@@ -17,19 +17,21 @@ export function AuthWall({
   showReturnButton = true,
   className = "",
 }: AuthWallProps) {
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     // Redirect to Discord auth after a short delay if user doesn't interact
     const timer = setTimeout(() => {
-      window.location.href = `/api/auth/sign-in/discord?callbackUrl=${encodeURIComponent(window.location.pathname)}`
-    }, 10000) // 10 seconds
+      window.location.href = `/api/auth/sign-in/discord?callbackUrl=${encodeURIComponent(window.location.pathname)}`;
+    }, 10000); // 10 seconds
 
-    return () => clearTimeout(timer)
-  }, [])
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <div className={`min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 ${className}`}>
+    <div
+      className={`min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 ${className}`}
+    >
       <div className="max-w-md w-full mx-4">
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8 text-center border border-gray-200 dark:border-gray-700">
           {/* Lock Icon */}
@@ -52,16 +54,18 @@ export function AuthWall({
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
               {title}
             </h2>
-            <p className="text-gray-600 dark:text-gray-400 mb-6">
-              {message}
-            </p>
+            <p className="text-gray-600 dark:text-gray-400 mb-6">{message}</p>
           </div>
 
           {/* Discord Auth Button */}
           <SignInButton
             size="lg"
             className="w-full mb-4 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
-            callbackUrl={typeof window !== 'undefined' ? window.location.pathname : undefined}
+            callbackUrl={
+              typeof window !== "undefined"
+                ? window.location.pathname
+                : undefined
+            }
           >
             <svg
               width="20"
@@ -76,7 +80,7 @@ export function AuthWall({
 
           {showReturnButton && (
             <button
-              onClick={() => router.push('/')}
+              onClick={() => router.push("/")}
               className="w-full px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors"
             >
               ← Return to Homepage
@@ -103,24 +107,32 @@ export function AuthWall({
               </div>
               <div className="text-left">
                 <h4 className="text-sm font-semibold text-blue-900 dark:text-blue-100 mb-1">
-                  Content Protection
+                  Content Protection & Community Access
                 </h4>
-                <p className="text-xs text-blue-800 dark:text-blue-200 leading-relaxed">
-                  This content is protected to prevent scraping and ensure quality access.
-                  Discord authentication is required for all pages except the homepage.
+                <p className="text-xs text-blue-800 dark:text-blue-200 leading-relaxed mb-2">
+                  This content is protected to prevent scraping and ensure
+                  quality access. Discord authentication is required for all
+                  pages except the homepage.
+                </p>
+                <p className="text-xs text-blue-600 dark:text-blue-300 font-semibold">
+                  🎉 By signing in, you'll be automatically added to our Discord
+                  community!
                 </p>
               </div>
             </div>
           </div>
 
           {/* Auto-redirect notice */}
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-4">
-            You'll be automatically redirected to Discord login in a few seconds...
-          </p>
+          <div className="mt-4 space-y-1">
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              You'll be automatically redirected to Discord login in a few
+              seconds...
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 // Specific variant for blog protection
@@ -130,7 +142,7 @@ export function BlogAuthWall() {
       title="Blog Access Restricted"
       message="Sign in with Discord to read our exclusive blog posts and community resources."
     />
-  )
+  );
 }
 
 // Specific variant for help/docs protection
@@ -140,7 +152,7 @@ export function DocsAuthWall() {
       title="Documentation Access Required"
       message="Access to our comprehensive documentation and help resources requires Discord authentication."
     />
-  )
+  );
 }
 
 // Specific variant for dashboard/protected areas
@@ -151,5 +163,5 @@ export function DashboardAuthWall() {
       message="Please authenticate with Discord to access your dashboard and account features."
       showReturnButton={false}
     />
-  )
+  );
 }

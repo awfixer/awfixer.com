@@ -1,4 +1,4 @@
-import { RichText } from '@components/RichText/index'
+import { RichText } from '@/components/RichText/index'
 import { NumberInput } from '@forms/fields/Number/index'
 import { ChevronDownIcon } from '@root/icons/ChevronDownIcon/index'
 import React from 'react'

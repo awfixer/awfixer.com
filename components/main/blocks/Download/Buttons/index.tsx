@@ -2,7 +2,7 @@
 
 import type { DownloadBlockType } from '@types'
 
-import { Tooltip } from '@components/Tooltip'
+import { Tooltip } from '@/components/Tooltip'
 import { DownloadIcon } from '@graphics/DownloadIcon'
 import { CheckIcon } from '@icons/CheckIcon'
 import { CopyIcon } from '@icons/CopyIcon'

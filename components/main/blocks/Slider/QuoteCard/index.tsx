@@ -1,7 +1,7 @@
 import type { Page } from '@root/payload-types'
 
-import { CMSLink } from '@components/CMSLink'
-import { Media } from '@components/Media'
+import { CMSLink } from '@/components/CMSLink'
+import { Media } from '@/components/Media'
 import { ArrowIcon } from '@icons/ArrowIcon'
 import * as React from 'react'
 

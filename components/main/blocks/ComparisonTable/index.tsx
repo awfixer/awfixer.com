@@ -1,9 +1,9 @@
 import type { Page } from '@types'
 
-import { BackgroundGrid } from '@components/BackgroundGrid'
-import { BlockWrapper, type PaddingProps } from '@components/BlockWrapper/index'
-import { Gutter } from '@components/Gutter'
-import { RichText } from '@components/RichText'
+import { BackgroundGrid } from '@/components/BackgroundGrid'
+import { BlockWrapper, type PaddingProps } from '@/components/BlockWrapper/index'
+import { Gutter } from '@/components/Gutter'
+import { RichText } from '@/components/RichText'
 
 import { TableIcon } from './Icons'
 import classes from './index.module.scss'

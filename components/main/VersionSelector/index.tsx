@@ -1,5 +1,5 @@
 'use client'
-import type { DocsVersion } from '@components/RenderDocs'
+import type { DocsVersion } from '@/components/RenderDocs'
 
 import { ChevronUpDownIcon } from '@root/icons/ChevronUpDownIcon/index'
 import { useRouter } from 'next/navigation'

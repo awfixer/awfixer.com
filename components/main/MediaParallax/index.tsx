@@ -1,7 +1,7 @@
-import type { Props as MediaProps } from '@components/Media/types'
+import type { Props as MediaProps } from '@/components/Media/types'
 import type { Media as MediaType } from '@root/payload-types'
 
-import { Media } from '@components/Media/index'
+import { Media } from '@/components/Media/index'
 import { motion, transform, useScroll } from 'framer-motion'
 import React from 'react'
 

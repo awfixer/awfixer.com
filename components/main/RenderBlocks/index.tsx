@@ -1,7 +1,7 @@
 'use client'
 
 import type { RelatedPostsBlock } from '@blocks/RelatedPosts/index'
-import type { PaddingProps, Settings } from '@components/BlockWrapper/index'
+import type { PaddingProps, Settings } from '@/components/BlockWrapper/index'
 import type { Page, ReusableContent } from '@root/payload-types'
 import type { Theme } from '@root/providers/Theme/types'
 
@@ -34,7 +34,7 @@ import { Slider } from '@blocks/Slider/index'
 import { Statement } from '@blocks/Statement/index'
 import { Steps } from '@blocks/Steps/index'
 import { StickyHighlights } from '@blocks/StickyHighlights/index'
-import { getFieldsKeyFromBlock } from '@components/RenderBlocks/utilities'
+import { getFieldsKeyFromBlock } from '@/components/RenderBlocks/utilities'
 import { useThemePreference } from '@root/providers/Theme/index'
 import { toKebabCase } from '@utilities/to-kebab-case'
 import React, { Fragment, useCallback, useEffect, useMemo, useState } from 'react'

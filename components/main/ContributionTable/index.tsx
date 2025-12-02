@@ -9,7 +9,7 @@ type ContributionTableProps = {
   contributions: Partner['content']['contributions']
 }
 
-import { Pill } from '@components/Pill'
+import { Pill } from '@/components/Pill'
 import { Suspense } from 'react'
 
 import classes from './index.module.scss'

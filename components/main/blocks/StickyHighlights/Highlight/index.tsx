@@ -2,14 +2,14 @@
 
 import type { Page } from '@root/payload-types'
 
-import { BackgroundScanline } from '@components/BackgroundScanline/index'
-import { CMSLink } from '@components/CMSLink/index'
-import Code from '@components/Code/index'
-import CodeBlip from '@components/CodeBlip/index'
+import { BackgroundScanline } from '@/components/BackgroundScanline/index'
+import { CMSLink } from '@/components/CMSLink/index'
+import Code from '@/components/Code/index'
+import CodeBlip from '@/components/CodeBlip/index'
 const CodeBlipProvider = CodeBlip.Provider
-import { Gutter } from '@components/Gutter/index'
-import { Media } from '@components/Media/index'
-import { RichText } from '@components/RichText/index'
+import { Gutter } from '@/components/Gutter/index'
+import { Media } from '@/components/Media/index'
+import { RichText } from '@/components/RichText/index'
 import { CrosshairIcon } from '@root/icons/CrosshairIcon/index'
 import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { CSSTransition } from 'react-transition-group'

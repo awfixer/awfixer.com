@@ -1,7 +1,7 @@
 'use client'
 import type { Page } from '@root/payload-types'
 
-import { ChangeHeaderTheme } from '@components/ChangeHeaderTheme/index'
+import { ChangeHeaderTheme } from '@/components/ChangeHeaderTheme/index'
 import { useThemePreference } from '@root/providers/Theme/index'
 import React, { useEffect, useMemo, useState } from 'react'
 

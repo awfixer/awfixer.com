@@ -1,6 +1,6 @@
 'use client'
 
-import type { Reference } from '@components/CMSLink'
+import type { Reference } from '@/components/CMSLink'
 import type { DefaultNodeTypes, SerializedBlockNode } from '@payloadcms/richtext-lexical'
 import type { SerializedLexicalNode } from '@payloadcms/richtext-lexical/lexical'
 import type { SerializedLabelNode } from '@root/fields/richText/features/label/LabelNode'
@@ -24,17 +24,17 @@ import type {
   YoutubeBlock,
 } from '@types'
 
-import { Banner } from '@components/Banner'
-import { CMSLink } from '@components/CMSLink'
-import Code from '@components/Code/index'
-import { CommandLine } from '@components/CommandLine'
-import { Label } from '@components/Label'
-import { LargeBody } from '@components/LargeBody'
-import RichTextUpload from '@components/RichText/Upload'
-import { Video } from '@components/RichText/Video'
-import SpotlightAnimation from '@components/SpotlightAnimation'
-import { TemplateCards } from '@components/TemplateCardsBlock'
-import YouTube from '@components/YouTube/index'
+import { Banner } from '@/components/Banner'
+import { CMSLink } from '@/components/CMSLink'
+import Code from '@/components/Code/index'
+import { CommandLine } from '@/components/CommandLine'
+import { Label } from '@/components/Label'
+import { LargeBody } from '@/components/LargeBody'
+import RichTextUpload from '@/components/RichText/Upload'
+import { Video } from '@/components/RichText/Video'
+import SpotlightAnimation from '@/components/SpotlightAnimation'
+import { TemplateCards } from '@/components/TemplateCardsBlock'
+import YouTube from '@/components/YouTube/index'
 
 import './index.scss'
 
