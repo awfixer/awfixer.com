@@ -1,0 +1,26 @@
+{
+  "title": "AWFixer Help Center",
+  "pages": [
+    "index",
+    {
+      "title": "AWFixerOS",
+      "pages": ["awfixeros/index", "awfixeros/installation"]
+    },
+    {
+      "title": "AWBrowse",
+      "pages": ["awbrowse/index", "awbrowse/installation"]
+    },
+    {
+      "title": "Modded Android",
+      "pages": ["modded-android/index"]
+    },
+    {
+      "title": "General Guides",
+      "pages": ["guides/index"]
+    },
+    {
+      "title": "Developer Platform",
+      "pages": ["developer/index"]
+    }
+  ]
+}

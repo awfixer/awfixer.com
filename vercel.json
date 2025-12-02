@@ -1,0 +1,43 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "fumadocs-mdx && next build",
+  "cleanUrls": true,
+  "devCommand": "next dev",
+  "redirects": [
+    {
+      "source": "/help",
+      "destination": "/help/docs",
+      "permanent": true
+    },
+    {
+      "source": "/help/",
+      "destination": "/help/docs",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/help/docs/:path*",
+      "destination": "/help/docs/:path*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/help/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    }
+  ]
+}

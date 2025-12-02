@@ -1,8 +1,14 @@
 import { betterAuth } from "better-auth";
-import { Pool } from "pg";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!,
+);
 
 export const auth = betterAuth({
-  database: new Pool({
-    // connection options
-  }),
+  database: {
+    provider: "supabase",
+    supabase: supabase,
+  },
 });

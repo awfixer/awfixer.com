@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postinstall": "fumadocs-mdx",
+    "types:check": "fumadocs-mdx && tsc --noEmit"
   },
   "dependencies": {
     "@faceless-ui/collapsibles": "2.0.0-beta.1",
@@ -67,6 +69,9 @@
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.23.25",
+    "fumadocs-core": "^16.2.1",
+    "fumadocs-mdx": "^14.0.4",
+    "fumadocs-ui": "^16.2.1",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.555.0",
     "motion": "^12.23.25",
@@ -99,12 +104,13 @@
     "typescript": "^5"
   },
   "engines": {
-    "node": "^24.0.0",
-    "pnpm": "^10"
+    "node": "^22.0.0",
+    "pnpm": "^10.0.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
       "@parcel/watcher",
+      "@sentry/cli",
       "esbuild",
       "sharp",
       "unrs-resolver"

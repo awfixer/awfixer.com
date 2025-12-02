@@ -1,0 +1,490 @@
+---
+title: Installing AWBrowse
+description: Complete installation guide for AWBrowse across all platforms - Windows, macOS, Linux, Android, and iOS.
+icon: Download
+---
+
+import { Cards, Card } from 'fumadocs-ui/components/card';
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Steps } from 'fumadocs-ui/components/steps';
+import { Tabs, Tab } from 'fumadocs-ui/components/tabs';
+
+# Installing AWBrowse
+
+AWBrowse is available on all major platforms. Choose your operating system below to get started with the most private browser experience.
+
+## System Requirements
+
+<Tabs items={['Desktop', 'Mobile']}>
+  <Tab value="Desktop">
+    **Minimum Requirements:**
+    - **RAM**: 2GB (4GB recommended)
+    - **Storage**: 500MB free space
+    - **Internet**: Required for initial download and updates
+    
+    **Platform Versions:**
+    - **Windows**: Windows 10 (1903) or later
+    - **macOS**: macOS 10.14 (Mojave) or later
+    - **Linux**: Ubuntu 18.04+, Debian 10+, Fedora 32+, or equivalent
+  </Tab>
+  
+  <Tab value="Mobile">
+    **Mobile Requirements:**
+    - **Android**: Android 8.0 (API level 26) or later
+    - **iOS**: iOS 13.0 or later
+    - **Storage**: 200MB free space
+    - **RAM**: 3GB recommended for optimal performance
+  </Tab>
+</Tabs>
+
+## Quick Install
+
+<Cards>
+  <Card 
+    title="Windows" 
+    description="Download the installer for Windows 10/11"
+    href="#windows-installation"
+    icon="Monitor"
+  />
+  
+  <Card 
+    title="macOS" 
+    description="Universal app for Intel and Apple Silicon Macs"
+    href="#macos-installation"
+    icon="Laptop"
+  />
+  
+  <Card 
+    title="Linux" 
+    description="Available via package managers and direct download"
+    href="#linux-installation"
+    icon="Terminal"
+  />
+  
+  <Card 
+    title="Android" 
+    description="Get it from Google Play Store or F-Droid"
+    href="#android-installation"
+    icon="Smartphone"
+  />
+  
+  <Card 
+    title="iOS" 
+    description="Download from the Apple App Store"
+    href="#ios-installation"
+    icon="Tablet"
+  />
+</Cards>
+
+## Windows Installation
+
+<Steps>
+
+### Download AWBrowse
+
+1. Visit [awfixer.com/download](https://awfixer.com/download)
+2. Click "Download for Windows"
+3. Choose between:
+   - **Installer** (.exe) - Recommended for most users
+   - **Portable** (.zip) - No installation required
+   - **Microsoft Store** - Auto-updates through Windows Store
+
+### Install from Installer
+
+1. Run the downloaded `AWBrowse-Setup.exe`
+2. Click "Yes" when prompted by Windows Security
+3. Choose installation options:
+   - **Install for all users** (requires admin) or **Current user only**
+   - **Custom installation path** (optional)
+   - **Create desktop shortcut**
+   - **Add to Start Menu**
+4. Click "Install" and wait for completion
+5. Launch AWBrowse from desktop or Start Menu
+
+### Portable Installation
+
+1. Extract the downloaded ZIP file
+2. Run `AWBrowse.exe` from the extracted folder
+3. AWBrowse will create a profile folder for your settings
+4. Optionally, create a desktop shortcut
+
+</Steps>
+
+<Callout type="info">
+**Windows Defender**: AWBrowse is digitally signed, but Windows may show a security warning for first-time downloads. This is normal for new applications.
+</Callout>
+
+## macOS Installation
+
+<Steps>
+
+### Download for macOS
+
+1. Visit [awfixer.com/download](https://awfixer.com/download)
+2. Click "Download for Mac"
+3. Choose your Mac type:
+   - **Universal** - Works on both Intel and Apple Silicon (recommended)
+   - **Intel** - Optimized for Intel Macs
+   - **Apple Silicon** - Native M1/M2/M3 support
+
+### Install the Application
+
+1. Open the downloaded `.dmg` file
+2. Drag AWBrowse to the Applications folder
+3. Eject the disk image
+4. Open Applications folder and double-click AWBrowse
+5. Click "Open" when macOS asks for permission (first launch only)
+
+### Command Line Installation (Homebrew)
+
+```bash
+# Install via Homebrew Cask
+brew install --cask awbrowse
+
+# Or install the beta version
+brew install --cask awbrowse-beta
+```
+
+</Steps>
+
+<Callout type="warning">
+**Gatekeeper**: macOS may prevent AWBrowse from opening initially. Right-click the app and select "Open" to bypass this security feature.
+</Callout>
+
+## Linux Installation
+
+AWBrowse supports multiple Linux distributions through various installation methods:
+
+<Tabs items={['Package Managers', 'Direct Download', 'Build from Source']}>
+  <Tab value="Package Managers">
+    
+### Ubuntu/Debian (APT)
+
+```bash
+# Add AWBrowse repository
+curl -fsSL https://repo.awfixer.com/gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/awbrowse.gpg
+echo "deb [signed-by=/usr/share/keyrings/awbrowse.gpg] https://repo.awfixer.com/deb stable main" | sudo tee /etc/apt/sources.list.d/awbrowse.list
+
+# Update package list and install
+sudo apt update
+sudo apt install awbrowse
+```
+
+### Fedora/RHEL/CentOS (DNF/YUM)
+
+```bash
+# Add AWBrowse repository
+sudo dnf config-manager --add-repo https://repo.awfixer.com/rpm/awbrowse.repo
+
+# Install AWBrowse
+sudo dnf install awbrowse
+```
+
+### Arch Linux (AUR)
+
+```bash
+# Using yay AUR helper
+yay -S awbrowse
+
+# Or using paru
+paru -S awbrowse
+
+# Manual AUR installation
+git clone https://aur.archlinux.org/awbrowse.git
+cd awbrowse
+makepkg -si
+```
+
+### openSUSE (Zypper)
+
+```bash
+# Add repository
+sudo zypper addrepo https://repo.awfixer.com/rpm/awbrowse.repo
+
+# Install
+sudo zypper install awbrowse
+```
+
+  </Tab>
+  
+  <Tab value="Direct Download">
+
+### AppImage (Universal)
+
+```bash
+# Download AppImage
+wget https://github.com/awfixer-org/awbrowse/releases/latest/download/AWBrowse-x86_64.AppImage
+
+# Make executable
+chmod +x AWBrowse-x86_64.AppImage
+
+# Run AWBrowse
+./AWBrowse-x86_64.AppImage
+```
+
+### Flatpak
+
+```bash
+# Install from Flathub
+flatpak install flathub com.awfixer.AWBrowse
+
+# Run AWBrowse
+flatpak run com.awfixer.AWBrowse
+```
+
+### Snap Package
+
+```bash
+# Install from Snap Store
+sudo snap install awbrowse
+
+# Run AWBrowse
+awbrowse
+```
+
+### TAR.XZ Archive
+
+```bash
+# Download and extract
+wget https://github.com/awfixer-org/awbrowse/releases/latest/download/awbrowse-linux-x64.tar.xz
+tar -xf awbrowse-linux-x64.tar.xz
+
+# Run AWBrowse
+cd awbrowse
+./awbrowse
+```
+
+  </Tab>
+  
+  <Tab value="Build from Source">
+
+### Prerequisites
+
+```bash
+# Ubuntu/Debian
+sudo apt install build-essential git cmake ninja-build libgtk-3-dev libwebkit2gtk-4.0-dev
+
+# Fedora
+sudo dnf install gcc gcc-c++ git cmake ninja-build gtk3-devel webkit2gtk3-devel
+
+# Arch Linux
+sudo pacman -S base-devel git cmake ninja gtk3 webkit2gtk
+```
+
+### Build Process
+
+```bash
+# Clone repository
+git clone https://github.com/awfixer-org/awbrowse.git
+cd awbrowse
+
+# Create build directory
+mkdir build && cd build
+
+# Configure build
+cmake -GNinja -DCMAKE_BUILD_TYPE=Release ..
+
+# Build AWBrowse
+ninja
+
+# Install (optional)
+sudo ninja install
+```
+
+  </Tab>
+</Tabs>
+
+## Android Installation
+
+<Steps>
+
+### Google Play Store
+
+1. Open the Google Play Store app
+2. Search for "AWBrowse"
+3. Tap "Install" on the official AWBrowse app
+4. Wait for download and installation
+5. Tap "Open" to launch AWBrowse
+
+### F-Droid (Open Source)
+
+1. Install F-Droid from [f-droid.org](https://f-droid.org/)
+2. Add AWBrowse repository:
+   - Go to Settings → Repositories
+   - Add `https://repo.awfixer.com/fdroid`
+3. Search for "AWBrowse" and install
+
+### Direct APK Download
+
+1. Enable "Unknown Sources" in Android settings
+2. Download the APK from [awfixer.com/download/android](https://awfixer.com/download/android)
+3. Open the downloaded APK file
+4. Follow installation prompts
+5. Launch from app drawer
+
+</Steps>
+
+<Callout type="info">
+**Permissions**: AWBrowse requests minimal permissions and explains why each is needed for browser functionality.
+</Callout>
+
+## iOS Installation
+
+<Steps>
+
+### App Store Installation
+
+1. Open the App Store app
+2. Search for "AWBrowse"
+3. Tap "Get" next to AWBrowse Browser
+4. Authenticate with Face ID, Touch ID, or password
+5. Wait for download and installation
+6. Tap the AWBrowse icon to launch
+
+### TestFlight Beta
+
+1. Install TestFlight from the App Store
+2. Join the beta program at [awfixer.com/beta](https://awfixer.com/beta)
+3. Tap the TestFlight link in your email
+4. Install AWBrowse Beta
+5. Provide feedback through TestFlight
+
+</Steps>
+
+<Callout type="warning">
+**iOS Limitations**: Due to Apple's restrictions, some advanced privacy features may not be available on iOS. We work within Apple's guidelines to provide maximum privacy protection.
+</Callout>
+
+## Post-Installation Setup
+
+After installing AWBrowse, follow these steps for optimal setup:
+
+<Steps>
+
+### First Launch Configuration
+
+1. **Welcome Screen**: Choose your privacy level:
+   - **Maximum Privacy**: Blocks everything, may break some sites
+   - **Balanced** (Recommended): Good privacy with site compatibility
+   - **Minimal**: Basic protection for sensitive sites
+
+2. **Default Search Engine**: Select from privacy-focused options:
+   - **DuckDuckGo** (Default)
+   - **Startpage**
+   - **Searx**
+   - **Brave Search**
+
+3. **Import Data**: Choose what to import from your previous browser:
+   - Bookmarks
+   - Passwords (encrypted)
+   - History (stays local)
+   - Search engines
+
+### Essential Settings
+
+1. **Privacy & Security**:
+   - Enable "Block all trackers"
+   - Turn on "HTTPS Everywhere"
+   - Configure cookie settings
+   - Set up password manager
+
+2. **Performance**:
+   - Enable hardware acceleration (if available)
+   - Configure memory usage limits
+   - Set download folder location
+
+3. **Appearance**:
+   - Choose light/dark theme
+   - Customize toolbar layout
+   - Set homepage and new tab page
+
+</Steps>
+
+## Verification & Updates
+
+### Verify Installation
+
+```bash
+# Check version (Linux/macOS terminal)
+awbrowse --version
+
+# Check installation integrity
+awbrowse --check-installation
+```
+
+### Update Methods
+
+**Automatic Updates** (Recommended):
+- AWBrowse checks for updates automatically
+- Updates install in the background
+- Restart browser to apply updates
+
+**Manual Updates**:
+- Check "About AWBrowse" in settings
+- Visit [awfixer.com/download](https://awfixer.com/download) for latest version
+- Follow same installation process
+
+## Troubleshooting
+
+### Common Issues
+
+**Issue**: Browser won't start
+- **Solution**: Check system requirements, try running as administrator/root
+- **Linux**: Verify all dependencies are installed
+
+**Issue**: Websites not loading properly
+- **Solution**: Temporarily disable strict privacy mode, check network connection
+- **Advanced**: Clear browser cache and cookies
+
+**Issue**: Extensions not working
+- **Solution**: Verify extension compatibility, check if privacy settings are blocking
+
+**Issue**: Performance problems
+- **Solution**: Disable unused extensions, clear cache, check available RAM
+
+### Getting Help
+
+If you encounter issues during installation:
+
+- **Documentation**: Check our [troubleshooting guide](/help/docs/awbrowse/troubleshooting)
+- **Community**: Ask on our [Discord server](https://discord.awfixer.com/)
+- **Support**: Contact support at support@awfixer.com
+- **Bug Reports**: Report issues on [GitHub](https://github.com/awfixer-org/awbrowse/issues)
+
+## Next Steps
+
+After successful installation:
+
+<Cards>
+  <Card 
+    title="First Time Setup" 
+    description="Configure AWBrowse for optimal privacy and performance"
+    href="/help/docs/awbrowse/setup"
+    icon="Settings"
+  />
+  
+  <Card 
+    title="Privacy Features" 
+    description="Learn about AWBrowse's advanced privacy protection"
+    href="/help/docs/awbrowse/privacy"
+    icon="Shield"
+  />
+  
+  <Card 
+    title="Keyboard Shortcuts" 
+    description="Browse faster with keyboard shortcuts and power user tips"
+    href="/help/docs/awbrowse/shortcuts"
+    icon="Keyboard"
+  />
+  
+  <Card 
+    title="Import & Sync" 
+    description="Migrate your data and sync across devices securely"
+    href="/help/docs/awbrowse/sync"
+    icon="RefreshCw"
+  />
+</Cards>
+
+---
+
+**Welcome to AWBrowse!** You're now ready to experience the web with true privacy. If you have any questions or need help, our community is here to support you on [Discord](https://discord.awfixer.com/).

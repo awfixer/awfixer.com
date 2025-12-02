@@ -1,0 +1,295 @@
+---
+title: Installing AWFixerOS
+description: Complete guide to installing AWFixerOS on your computer, including system requirements, preparation steps, and troubleshooting.
+icon: Download
+---
+
+import { Cards, Card } from 'fumadocs-ui/components/card';
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Steps } from 'fumadocs-ui/components/steps';
+
+# Installing AWFixerOS
+
+This comprehensive guide will walk you through installing AWFixerOS on your computer. Whether you're new to Linux or an experienced user, we'll cover everything you need to know.
+
+## Before You Begin
+
+<Callout type="warning">
+  **Important**: Installing AWFixerOS will replace your current operating system. Make sure to backup all important data before proceeding.
+</Callout>
+
+### System Requirements
+
+**Minimum Requirements:**
+- **RAM**: 4GB (8GB recommended)
+- **Storage**: 25GB free space (50GB recommended)
+- **Processor**: 64-bit x86_64 CPU
+- **Graphics**: Any GPU with basic driver support
+- **Network**: Internet connection for updates
+
+**Recommended Specifications:**
+- **RAM**: 8GB or more
+- **Storage**: 100GB+ SSD
+- **Processor**: Modern multi-core CPU
+- **Graphics**: Dedicated GPU for better performance
+
+### Supported Hardware
+
+AWFixerOS supports a wide range of hardware:
+
+- ✅ Most Intel and AMD processors (2010+)
+- ✅ NVIDIA and AMD graphics cards
+- ✅ Wi-Fi adapters (most common chipsets)
+- ✅ Bluetooth devices
+- ✅ USB peripherals
+- ✅ Most laptops and desktops
+
+<Callout type="info">
+  Check our [hardware compatibility list](/help/docs/awfixeros/hardware-compatibility) for specific device support.
+</Callout>
+
+## Installation Methods
+
+Choose the installation method that works best for you:
+
+<Cards>
+  <Card 
+    title="USB Installation" 
+    description="Most common method using a USB drive (recommended)"
+    href="#usb-installation"
+    icon="Usb"
+  />
+  
+  <Card 
+    title="DVD Installation" 
+    description="Traditional method using a DVD disc"
+    href="#dvd-installation"
+    icon="Disc"
+  />
+  
+  <Card 
+    title="Virtual Machine" 
+    description="Try AWFixerOS in a virtual environment first"
+    href="#virtual-machine-installation"
+    icon="Monitor"
+  />
+</Cards>
+
+## USB Installation (Recommended)
+
+### What You'll Need
+
+- USB drive (8GB or larger)
+- Computer with internet connection
+- AWFixerOS ISO file
+
+### Step-by-Step Installation
+
+<Steps>
+
+#### Download AWFixerOS
+
+1. Visit the [AWFixerOS download page](https://awfixer.com/downloads/awfixeros)
+2. Choose your preferred edition:
+   - **Desktop Edition**: Full desktop environment
+   - **Server Edition**: Minimal server installation
+   - **Developer Edition**: Pre-configured for development
+3. Download the ISO file (approximately 3-4GB)
+
+#### Create Installation Media
+
+**On Windows:**
+1. Download [Rufus](https://rufus.ie/) or [Balena Etcher](https://balena.io/etcher/)
+2. Insert your USB drive
+3. Open Rufus/Etcher and select the AWFixerOS ISO
+4. Select your USB drive as the target
+5. Click "Start" to create the bootable USB
+
+**On macOS:**
+1. Download [Balena Etcher](https://balena.io/etcher/)
+2. Insert your USB drive
+3. Open Etcher and select the AWFixerOS ISO
+4. Select your USB drive
+5. Click "Flash" to create the bootable USB
+
+**On Linux:**
+```bash
+# Find your USB device
+lsblk
+
+# Write the ISO to USB (replace /dev/sdX with your USB device)
+sudo dd if=awfixeros.iso of=/dev/sdX bs=4M status=progress
+
+# Sync to ensure all data is written
+sync
+```
+
+#### Boot from USB
+
+1. Insert the USB drive into your target computer
+2. Restart the computer
+3. Press the boot menu key during startup:
+   - **Dell**: F12
+   - **HP**: F9
+   - **Lenovo**: F12
+   - **ASUS**: F8
+   - **Acer**: F12
+4. Select your USB drive from the boot menu
+5. AWFixerOS will boot into the live environment
+
+#### Install AWFixerOS
+
+1. **Try or Install**: Choose "Install AWFixerOS" from the welcome screen
+2. **Language & Region**: Select your language and region
+3. **Keyboard Layout**: Choose your keyboard layout
+4. **Network**: Connect to Wi-Fi if needed (ethernet auto-connects)
+5. **Installation Type**:
+   - **Erase disk and install**: Replaces entire hard drive
+   - **Something else**: Advanced partitioning (for experts)
+6. **User Account**: Create your user account and password
+7. **Review Settings**: Confirm your choices
+8. **Install**: Click "Install Now" to begin installation
+
+#### Complete Installation
+
+1. Installation takes 15-30 minutes
+2. Remove USB drive when prompted
+3. Restart your computer
+4. AWFixerOS will boot from your hard drive
+
+</Steps>
+
+## Post-Installation Setup
+
+After successful installation, you'll want to:
+
+### First Boot Configuration
+
+<Steps>
+
+#### System Updates
+
+```bash
+# Update package lists
+sudo apt update
+
+# Upgrade all packages
+sudo apt upgrade -y
+```
+
+#### Install Additional Software
+
+```bash
+# Install essential packages
+sudo apt install curl wget git vim
+
+# Install multimedia codecs
+sudo apt install ubuntu-restricted-extras
+```
+
+#### Configure Firewall
+
+```bash
+# Enable firewall
+sudo ufw enable
+
+# Check status
+sudo ufw status
+```
+
+</Steps>
+
+### Essential Applications
+
+Install popular applications through the Software Center or terminal:
+
+- **Web Browsers**: AWBrowse (pre-installed), Firefox, Chrome
+- **Media**: VLC, GIMP, Audacity
+- **Office**: LibreOffice (pre-installed), OnlyOffice
+- **Development**: VS Code, Docker, Node.js
+- **Communication**: Discord, Telegram, Signal
+
+## Troubleshooting
+
+### Common Installation Issues
+
+**Issue: Computer won't boot from USB**
+- Check BIOS/UEFI settings
+- Disable Secure Boot temporarily
+- Try a different USB port
+- Recreate the bootable USB
+
+**Issue: Graphics problems during installation**
+- Boot with "Safe Graphics" option
+- Use `nomodeset` kernel parameter
+- Install proprietary graphics drivers after installation
+
+**Issue: Wi-Fi not working**
+- Use ethernet connection during installation
+- Install Wi-Fi drivers after installation
+- Check our [driver guide](/help/docs/awfixeros/drivers)
+
+**Issue: Installation freezes**
+- Check hardware compatibility
+- Test RAM with memtest86+
+- Try minimal installation option
+
+<Callout type="info">
+  **Need Help?** Join our [Discord server](https://discord.awfixer.com/) for real-time assistance with installation issues.
+</Callout>
+
+## Alternative Installation Methods
+
+### DVD Installation
+
+1. Download AWFixerOS ISO file
+2. Burn ISO to DVD using your preferred burning software
+3. Boot from DVD and follow the same installation steps
+
+### Virtual Machine Installation
+
+Perfect for testing AWFixerOS before installing:
+
+**VMware/VirtualBox Settings:**
+- RAM: 4GB minimum, 8GB recommended
+- Storage: 25GB minimum
+- Enable virtualization features
+- Disable 3D acceleration initially
+
+## Next Steps
+
+After installation, check out these guides:
+
+<Cards>
+  <Card 
+    title="First Steps" 
+    description="Essential setup and configuration after installation"
+    href="/help/docs/awfixeros/first-steps"
+    icon="Play"
+  />
+  
+  <Card 
+    title="Desktop Environment" 
+    description="Customizing your AWFixerOS desktop"
+    href="/help/docs/awfixeros/desktop"
+    icon="Layout"
+  />
+  
+  <Card 
+    title="Software Installation" 
+    description="Installing and managing software on AWFixerOS"
+    href="/help/docs/awfixeros/software"
+    icon="Package"
+  />
+  
+  <Card 
+    title="System Administration" 
+    description="Managing users, services, and system settings"
+    href="/help/docs/awfixeros/administration"
+    icon="Settings"
+  />
+</Cards>
+
+---
+
+**Congratulations!** You've successfully installed AWFixerOS. Welcome to the AWFixer community! If you encounter any issues or have questions, don't hesitate to reach out on our [Discord server](https://discord.awfixer.com/) or [community forums](https://community.awfixer.com/).
