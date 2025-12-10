@@ -11,7 +11,7 @@
 		"types:check": "fumadocs-mdx && tsc --noEmit"
 	},
 	"dependencies": {
-		"@coinbase/x402": "^0.7.3",
+		"@coinbase/x402": "^1.0.0",
 		"@faceless-ui/collapsibles": "2.0.0-beta.1",
 		"@faceless-ui/css-grid": "^1.2.1",
 		"@faceless-ui/jumplist": "^1.0.10",
