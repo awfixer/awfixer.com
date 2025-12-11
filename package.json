@@ -81,7 +81,7 @@
 		"gsap": "^3.13.0",
 		"import-in-the-middle": "^2.0.0",
 		"input-otp": "^1.4.2",
-		"lucide-react": "^0.555.0",
+		"lucide-react": "^0.560.0",
 		"motion": "^12.23.12",
 		"next": "16.0.6",
 		"next-auth": "^4.24.13",
